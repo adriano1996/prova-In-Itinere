@@ -1,0 +1,102 @@
+"""
+    File name: prova.py
+    Author: Adriano Del Gaudio 0227998
+    Python Version: 2.7
+
+    algoritmo proposto per la soluzione della prova in itere1 esercizio numero 3
+     sia dato un arrey A di n elementi tale che n sia un multiplo di 7.
+     proggettare e implementare un algoritmo che trovi, se esiste, un numero x che soddisfi entrambe le seguenti propieta:
+     - x appariene al primo settimo dell' array
+     - x deve trovarsi nell'ultimo settimo dell'array ordinato
+
+
+    l' algoritmo tramite  il main gli viene passata l'array da essaminare. La funzione prova1 crea una lista con all'interno
+    la prima settupla dell'array e una lista di supporto vuota. tramite la funzione listmax riempio la lista di supporto con
+    gli n/7 massimi dell'array. dopo di che confronto la lista si supporto con la lista creata in precedenza se trova degli elementi corrispondenti
+    indica che quell' elemento si trova nella prima settupla prima dell'ordinamento e nell'ultima dopo.
+
+    eseguiro il main parte la funzione "codiceperlaprova" che usa gli i valori assegnati nel main per fare dei test sulla funzion
+    e e sui tempi in cui viene eseguita
+
+Analisi tempi
+    le funzioni eseguite impiegano un tempo (n) usando i cicli for altrimenti si ottiene (n^2 ) usando un implementazione ricorsiva
+la funzione non ricorsiva riuslta essere piu efficente per liste grandi
+
+    valori medi
+cicli for:    prova1 t(n) + listaMax t(n)
+     a 1.25445283238e-05 secondi.
+     b 6.08219555095e-06 secondi
+     c 3.04109777547e-06 secondi
+
+ricorsiva : prova1 t(n) + listaMax t(n^2)
+     a 1.02637049922e-05 secondi
+     b 5.32192110708e-06 secondi
+     c 2.28082333161e-06 secondi
+
+
+"""
+import time
+import random
+
+def prova1(A):
+    # A: lista di n*7 elementi
+  X = len(A)
+  Y = X/7
+  C = A[:Y]
+  B =[]
+  listaMax(A,Y,B)
+  for i in range(len(B)):
+    if B[i] in C:
+        X = B[i]
+        return X
+  return False
+
+
+def listaMax(A,Y,B,):
+    for i in range(0, Y):
+        B.append(max(A))
+        A.remove(max(A))
+    return B
+"""
+implementazione ricorsiva:
+
+    B.append(max(A))
+    A.remove(max(A))
+    if len(B) != Y:
+        return listaMax(A, Y, B)
+    else:
+        return B
+"""
+
+def stampaRisultato(ris, tempo):
+    if ris == False:
+        print "nessun valore nel primo settimo soddisfa le richieste.", tempo, "secondi."
+    else:
+     print "il valore", ris, "si trova nel primo settimo prima dell'ordinamento e nell'ultimo settimo dopo. Trovato in:\n", tempo, "secondi."
+
+
+def codicePerLaProva(A):
+    inizio = time.clock()
+    p=prova1(A)
+    tempoTrascorso = time.clock() - inizio
+    stampaRisultato(p,tempoTrascorso)
+
+
+
+#codice di test
+if __name__ == '__main__':
+
+    a=[15,2,2,33,5,3,1,7,8,11,9,3,5,6,12,16,7,8,1,10,11]
+    b=[1,1,2,2,3,3,4,4,5,5,6,6,7,7]
+    c=[7,6,5,4,3,2,1]
+    d=[]
+    R= random.randrange(0,100)*7
+    for i in range(0,R ):
+        d.append(random.randrange(0,100))
+
+    print "lista random: ", d
+
+    print(codicePerLaProva(a))
+    print(codicePerLaProva(b))
+    print(codicePerLaProva(c))
+    print(codicePerLaProva(d))
