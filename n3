@@ -3,7 +3,7 @@
     Author: Adriano Del Gaudio 0227998
     Python Version: 2.7
 
-    algoritmo proposto per la soluzione della prova in itere1 esercizio numero 3
+    algoritmo proposto per la soluzione della prova in itinere1 esercizio numero 3
      sia dato un arrey A di n elementi tale che n sia un multiplo di 7.
      proggettare e implementare un algoritmo che trovi, se esiste, un numero x che soddisfi entrambe le seguenti propieta:
      - x appariene al primo settimo dell' array
