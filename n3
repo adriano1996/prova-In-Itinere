@@ -39,6 +39,7 @@ import time
 import random
 
 def prova1(A):
+    # algoritmo di partenza 
     # A: lista di n*7 elementi
   X = len(A)
   Y = X/7
@@ -53,12 +54,17 @@ def prova1(A):
 
 
 def listaMax(A,Y,B,):
+  #algoritmo che crea una lista con tutti i massimi di A
+  # param A = lista
+  # param B = lista
+  # param Y = int
     for i in range(0, Y):
         B.append(max(A))
         A.remove(max(A))
     return B
+    
 """
-implementazione ricorsiva:
+possibile implementazione ricorsiva di listaMax():
 
     B.append(max(A))
     A.remove(max(A))
